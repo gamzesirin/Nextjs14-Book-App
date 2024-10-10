@@ -2,7 +2,7 @@ import './globals.css' // Eğer global CSS dosyanız varsa
 
 import Footer from '@/components/main/Footer'
 import Header from '@/components/main/Header'
-// app/layout.tsx
+import NextAuthSessionProvider from '@/providers/NextAuthProviders'
 import React from 'react'
 
 export const metadata = {
@@ -16,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<div className="flex flex-col min-h-screen">
 					<Header />
-					<main className="flex-grow container mx-auto px-4 py-8">{children}</main>
+					<main className="flex-grow container mx-auto px-4 py-8">
+						<NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+					</main>
 					<Footer />
 				</div>
 			</body>
