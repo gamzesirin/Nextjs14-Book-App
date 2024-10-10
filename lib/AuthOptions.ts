@@ -22,17 +22,15 @@ export const authOptions = {
         })
     ],
     callbacks: {
-        async jwt(token, user) {
-            // JWT oluşturulurken kullanıcı bilgilerini token'a ekliyoruz
+        async jwt({ token, user }) {
             if (user) {
-                token.user = user
+                token.user = user;
             }
-            return token
+            return token;
         },
-        async session(session, user) {
-            // Oturum oluşturulurken kullanıcı bilgilerini session'a ekliyoruz
-            session.user = user.user
-            return session
+        async session({ session, token }) {
+            session.user = token.user;
+            return session;
         }
     },
     pages: {
@@ -42,4 +40,4 @@ export const authOptions = {
     session: {
         strategy: 'jwt', // Oturum yönetimi için JWT stratejisini kullanıyoruz
     }
-}
+};
